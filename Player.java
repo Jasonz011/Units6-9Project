@@ -1,10 +1,10 @@
 public class Player extends Space {
     private int score;
-    private int move;
+    private int moves;
     public Player(String s) {
         super(s);
         score = 0;
-        move = 0;
+        moves = 0;
     }
 
     public int getScore() {
@@ -16,6 +16,10 @@ public class Player extends Space {
     }
 
     public void move() {
-        move++;
+        moves++;
+    }
+
+    public int getMoves() {
+        return moves;
     }
 }

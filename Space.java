@@ -1,5 +1,5 @@
 public class Space {
-    private String symbol;
+    private final String symbol;
     public Space(String s) {
         symbol = s;
     }

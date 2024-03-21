@@ -1,5 +1,3 @@
-import java.util.Locale;
-
 import java.util.Scanner;
 
 public class MazeGame {
@@ -47,39 +45,60 @@ public class MazeGame {
         int row = 14;
         int col = 0;
         boolean game = true;
-        while (game) {
+        while (game && p1.getHunger() > 0) {
             printMaze();
+            System.out.println("You have " + p1.getHunger() + " hunger left(don't let this reach 0!)");
             System.out.print("Enter W A S D: ");
             String choice = scan.nextLine();
             if (choice.equals("W")) {
                 if (row > 0) {
-                    maze[row][col] = new Space(" ");
-                    row--;
-                    p1.move();
+                    if (maze[row-1][col] instanceof Wall) {
+                        System.out.println("I can't go there because there is a wall");
+                    } else {
+                        maze[row][col] = new Space(" ");
+                        row--;
+                        p1.move();
+                        p1.getHungry(1);
+                    }
                 } else {
                     System.out.println("Will go out of bound");
                 }
             } else if (choice.equals("A")) {
                 if (col > 0) {
-                    maze[row][col] = new Space(" ");
-                    col--;
-                    p1.move();
+                    if (maze[row][col-1] instanceof Wall) {
+                        System.out.println("I can't go there because there is a wall");
+                    } else {
+                        maze[row][col] = new Space(" ");
+                        col--;
+                        p1.move();
+                        p1.getHungry(1);
+                    }
                 } else {
                     System.out.println("Will go out of bound");
                 }
             } else if (choice.equals("S")) {
                 if (row < 7) {
-                    maze[row][col] = new Space(" ");
-                    row++;
-                    p1.move();
+                    if (maze[row+1][col] instanceof Wall) {
+                        System.out.println("I can't go there because there is a wall");
+                    } else {
+                        maze[row][col] = new Space(" ");
+                        row++;
+                        p1.move();
+                        p1.getHungry(1);
+                    }
                 } else {
                     System.out.println("Will go out of bound");
                 }
             } else if (choice.equals("D")) {
                 if (col < 7) {
-                    maze[row][col] = new Space(" ");
-                    col++;
-                    p1.move();
+                    if (maze[row][col+1] instanceof Wall) {
+                        System.out.println("I can't go there because there is a wall");
+                    } else {
+                        maze[row][col] = new Space(" ");
+                        col++;
+                        p1.move();
+                        p1.getHungry(1);
+                    }
                 } else {
                     System.out.println("Will go out of bound");
                 }
@@ -87,7 +106,7 @@ public class MazeGame {
                 System.out.println("INVALID DIRECTION");
             }
             if (maze[row][col] instanceof Coin) {
-                p1.addCoins(((Coin) maze[row][col]).getCoinValue());
+                p1.addScore(((Coin) maze[row][col]).getCoinValue());
                 System.out.println("You picked a coin valued at " + ((Coin) maze[row][col]).getCoinValue());
             } else if (maze[row][col] instanceof Goal) {
                 game = false;
@@ -95,8 +114,16 @@ public class MazeGame {
             maze[row][col] = p1;
         }
         printMaze();
-        System.out.println("You win!");
-        System.out.println("Number of moves: " + p1.getMoves());
-        System.out.println("Points earned: " + p1.getScore());
+        if (p1.getHunger() > 0) {
+            System.out.println("You win!");
+            System.out.println("Number of moves: " + p1.getMoves());
+            System.out.println("Points earned: " + p1.getScore());
+        } else {
+            System.out.println("You lose! You spent too much time in the maze and starved");
+            System.out.println("Better luck next time!");
+            System.out.println("Number of moves: " + p1.getMoves());
+            System.out.println("Points earned: " + p1.getScore());
+        }
+
     }
 }

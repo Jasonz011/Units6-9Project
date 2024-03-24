@@ -2,11 +2,13 @@ public class Player extends Space {
     private int score;
     private int moves;
     private int hunger;
-    public Player(String s) {
+    private String name;
+    public Player(String s, String name) {
         super(s);
         score = 0;
         moves = 0;
-        hunger = 200;
+        hunger = 150;
+        this.name = name;
     }
 
     public int getScore() {
@@ -27,6 +29,9 @@ public class Player extends Space {
 
     public int getHunger() {
         return hunger;
+    }
+    public String getName() {
+        return name;
     }
 
     public void getHungry(int amt) {

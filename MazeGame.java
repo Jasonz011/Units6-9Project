@@ -45,9 +45,10 @@ public class MazeGame {
 
     public void makePlayer() {
         scan = new Scanner(System.in);
-        System.out.println("Welcome to the maze game!\nEnter your name: ");
-        p1 = new Player("😊");
-        System.out.println("Welcome, " + p1.getSymbol() + "!");
+        System.out.print("Welcome to the maze game!\nEnter your name: ");
+        String name = scan.nextLine();
+        p1 = new Player("😊", name);
+        System.out.println("Welcome, " + p1.getName() + "!");
     }
 
     public void fillMaze () {

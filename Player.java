@@ -6,7 +6,7 @@ public class Player extends Space {
         super(s);
         score = 0;
         moves = 0;
-        hunger = 50;
+        hunger = 200;
     }
 
     public int getScore() {

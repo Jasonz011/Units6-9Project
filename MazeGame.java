@@ -13,23 +13,23 @@ public class MazeGame {
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, // 0
                 {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1}, // 1
                 {1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1}, // 2
-                {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1}, // 3
+                {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 2, 1}, // 3
                 {1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1}, // 4
                 {1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1}, // 5
                 {1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1}, // 6
-                {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1}, // 7
+                {1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1}, // 7
                 {1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1}, // 8
-                {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1}, // 9
+                {1, 2, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1}, // 9
                 {1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 1}, // 10
                 {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1}, // 11
                 {1, 1, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1}, // 12
-                {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // 13
+                {1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 1}, // 13
                 {1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1}, // 14
                 {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1}, // 15
                 {1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1}, // 16
                 {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1}, // 17
                 {1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1}, // 18
-                {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1}, // 19
+                {1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1}, // 19
                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1}, // 20
         };
 
@@ -55,9 +55,11 @@ public class MazeGame {
         for (int r = 0; r<21; r++) {
             for (int c = 0; c < maze[0].length; c++) {
                 if (temp[r][c] == 1) {
-                    maze[r][c] = new Space("\uD83D\uDD33");
+                    maze[r][c] = new Wall("\uD83D\uDD33");
+                } else if (temp[r][c] == 2){
+                    maze[r][c] = new Coin("🪙", 5);
                 } else {
-                    maze[r][c] = new Wall("⬛");
+                    maze[r][c] = new Space("⬛");
                 }
             }
         }
@@ -76,20 +78,20 @@ public class MazeGame {
     }
 
     public void play() {
-        int row = 14;
-        int col = 0;
+        int row = 20;
+        int col = 11;
         boolean game = true;
         while (game && p1.getHunger() > 0) {
             printMaze();
             System.out.println("You have " + p1.getHunger() + " hunger left(don't let this reach 0!)");
             System.out.print("Enter W A S D: ");
-            String choice = scan.nextLine();
+            String choice = scan.nextLine().toUpperCase();
             if (choice.equals("W")) {
                 if (row > 0) {
                     if (maze[row-1][col] instanceof Wall) {
                         System.out.println("I can't go there because there is a wall");
                     } else {
-                        maze[row][col] = new Space(" ");
+                        maze[row][col] = new Space("⬛");
                         row--;
                         p1.move();
                         p1.getHungry(1);
@@ -102,7 +104,7 @@ public class MazeGame {
                     if (maze[row][col-1] instanceof Wall) {
                         System.out.println("I can't go there because there is a wall");
                     } else {
-                        maze[row][col] = new Space(" ");
+                        maze[row][col] = new Space("⬛");
                         col--;
                         p1.move();
                         p1.getHungry(1);
@@ -111,11 +113,11 @@ public class MazeGame {
                     System.out.println("Will go out of bound");
                 }
             } else if (choice.equals("S")) {
-                if (row < 7) {
+                if (row < 20) {
                     if (maze[row+1][col] instanceof Wall) {
                         System.out.println("I can't go there because there is a wall");
                     } else {
-                        maze[row][col] = new Space(" ");
+                        maze[row][col] = new Space("⬛");
                         row++;
                         p1.move();
                         p1.getHungry(1);
@@ -124,11 +126,11 @@ public class MazeGame {
                     System.out.println("Will go out of bound");
                 }
             } else if (choice.equals("D")) {
-                if (col < 7) {
+                if (col < 20) {
                     if (maze[row][col+1] instanceof Wall) {
                         System.out.println("I can't go there because there is a wall");
                     } else {
-                        maze[row][col] = new Space(" ");
+                        maze[row][col] = new Space("⬛");
                         col++;
                         p1.move();
                         p1.getHungry(1);

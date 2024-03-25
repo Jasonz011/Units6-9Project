@@ -23,7 +23,7 @@ public class Player extends Space {
         System.out.println("Moving...");
         try {
             // fix wait
-            Thread.sleep(1000);
+            Thread.sleep(10);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -36,6 +36,9 @@ public class Player extends Space {
 
     public int getHunger() {
         return hunger;
+    }
+    public void addHunger(int amt) {
+        hunger += amt;
     }
     public String getName() {
         return name;

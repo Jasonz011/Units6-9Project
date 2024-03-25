@@ -140,7 +140,8 @@ public class MazeGame {
                 p1.addScore(((Coin) maze[row][col]).getCoinValue());
                 System.out.println("You picked a coin valued at " + ((Coin) maze[row][col]).getCoinValue());
             } else if(maze[row][col] instanceof Meat) {
-                // finish this
+                p1.addHunger(((Meat) maze[row][col]).getHungerValue());
+                System.out.println("You picked a meat valued at " + ((Meat) maze[row][col]).getHungerValue());
             } else if (maze[row][col] instanceof Goal) {
                 game = false;
             }

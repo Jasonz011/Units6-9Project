@@ -7,7 +7,7 @@ public class Player extends Space {
         super(s);
         score = 0;
         moves = 0;
-        hunger = 150;
+        hunger = 100;
         this.name = name;
     }
 
@@ -20,6 +20,13 @@ public class Player extends Space {
     }
 
     public void move() {
+        System.out.println("Moving...");
+        try {
+            // fix wait
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         moves++;
     }
 

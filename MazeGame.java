@@ -4,6 +4,7 @@ public class MazeGame {
     private Space[][] maze;
     private Scanner scan;
     private Player p1;
+    private Goal goal;
     private int[][] temp;
 
     public MazeGame() {
@@ -65,7 +66,7 @@ public class MazeGame {
                 }
             }
         }
-        Goal goal = new Goal("👑");
+        goal = new Goal("👑");
         maze[0][9] = goal;
         maze[20][11] = p1;
     }
@@ -83,8 +84,7 @@ public class MazeGame {
         rules();
         int row = 20;
         int col = 11;
-        boolean game = true;
-        while (game && p1.getHunger() > 0) {
+        while (!goal.reached() && p1.getHunger() > 0) {
             printMaze();
             System.out.println("You have " + p1.getHunger() + " hunger left(don't let this reach 0!)");
             System.out.print("Enter W A S D: ");
@@ -140,9 +140,11 @@ public class MazeGame {
                 p1.addScore(((Coin) maze[row][col]).getCoinValue());
                 System.out.println("You picked a coin valued at " + ((Coin) maze[row][col]).getCoinValue());
             } else if(maze[row][col] instanceof Meat) {
-                // finish this
+                System.out.println("You picked up a piece of meat and ate it, now you are less hungry");
+                p1.getHungry(-((Meat) maze[row][col]).getHungerValue());
+                System.out.println("Your current hunger is " + p1.getHunger());
             } else if (maze[row][col] instanceof Goal) {
-                game = false;
+                goal.setGoalReached(true);
             }
             maze[row][col] = p1;
         }

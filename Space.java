@@ -7,4 +7,8 @@ public class Space {
     public String getSymbol() {
         return symbol;
     }
+
+    public void printAction() {
+        System.out.println("Moving...");
+    }
 }

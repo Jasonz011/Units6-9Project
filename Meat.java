@@ -8,4 +8,9 @@ public class Meat extends Space {
     public int getHungerValue() {
         return hungerValue;
     }
+
+    @Override
+    public void printAction() {
+        System.out.println("You picked up a piece of meat and ate it, now you are less hungry");
+    }
 }

@@ -5,6 +5,7 @@ public class Wall extends Space {
 
     @Override
     public void printAction() {
+        super.printAction();
         System.out.println("Oops! Can't go that way because there's a wall");
     }
 }

@@ -12,6 +12,7 @@ public class Coin extends Space {
 
     @Override
     public void printAction() {
+        super.printAction();
         System.out.println("You picked a coin valued at " + coinValue);
     }
 }

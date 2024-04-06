@@ -94,42 +94,38 @@ public class MazeGame {
             System.out.print("Enter W A S D: ");
             String choice = scan.nextLine().toUpperCase();
             if (choice.equals("W")) {
-                if (row > 0) {
-                    if (maze[row - 1][col] instanceof Wall) {
-                        maze[row - 1][col].printAction();
-                    } else {
-                        maze[row][col] = new Space("⬛");
-                        maze[row][col].printAction();
-                        row--;
-                        p1.move();
-                        p1.getHungry(1);
-                    }
-                } else {
-                    System.out.println("Will go out of bound");
-                }
-            } else if (choice.equals("A")) {
-                if (col > 0) {
-                    if (maze[row][col - 1] instanceof Wall) {
-                        maze[row][col - 1].printAction();
-                    } else {
-                        maze[row][col] = new Space("⬛");
-                        maze[row][col].printAction();
-                        col--;
-                        p1.move();
-                        p1.getHungry(1);
-                    }
-                } else {
-                    System.out.println("Will go out of bound");
-                }
-            } else if (choice.equals("S")) {
-                if (maze[row + 1][col] instanceof Wall) {
-                    maze[row + 1][col].printAction();
+                if (maze[row - 1][col] instanceof Wall) {
+                    maze[row - 1][col].printAction();
                 } else {
                     maze[row][col] = new Space("⬛");
                     maze[row][col].printAction();
-                    row++;
+                    row--;
                     p1.move();
                     p1.getHungry(1);
+                }
+            } else if (choice.equals("A")) {
+                if (maze[row][col - 1] instanceof Wall) {
+                    maze[row][col - 1].printAction();
+                } else {
+                    maze[row][col] = new Space("⬛");
+                    maze[row][col].printAction();
+                    col--;
+                    p1.move();
+                    p1.getHungry(1);
+                }
+            } else if (choice.equals("S")) {
+                if (row == 20) {
+                    System.out.println("You'll go out of bounds");
+                } else {
+                    if (maze[row + 1][col] instanceof Wall) {
+                        maze[row + 1][col].printAction();
+                    } else {
+                        maze[row][col] = new Space("⬛");
+                        maze[row][col].printAction();
+                        row++;
+                        p1.move();
+                        p1.getHungry(1);
+                    }
                 }
             } else if (choice.equals("D")) {
                 if (maze[row][col + 1] instanceof Wall) {
@@ -149,7 +145,7 @@ public class MazeGame {
                 maze[row][col].printAction();
             } else if(maze[row][col] instanceof Meat) {
                 maze[row][col].printAction();
-                p1.getHungry(((Meat) maze[row][col]).getHungerValue());
+                p1.getHungry(-((Meat) maze[row][col]).getHungerValue());
                 System.out.println("Your current hunger is " + p1.getHunger());
             } else if (maze[row][col] instanceof Goal) {
                 goal.setGoalReached(true);
@@ -175,7 +171,7 @@ public class MazeGame {
 
     public void rules() {
         System.out.println("You are going to be represented by the 😊 emoji");
-        System.out.println("There will be coins scattered across the maze, collect them to get points!");
+        System.out.println("There will be coins scattered across the maze, represented by 🎁. Collect them to get points!");
         System.out.println("You will start with 100 hunger, and each valid move will cost you one.");
         System.out.println("There will be pieces of meat you can pick up and eat which will replenish 20 hunger");
         System.out.println("The game ends when you reach the goal, represented by 👑 or when you run out of hunger");

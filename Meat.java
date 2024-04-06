@@ -11,6 +11,7 @@ public class Meat extends Space {
 
     @Override
     public void printAction() {
+        super.printAction();
         System.out.println("You picked up a piece of meat and ate it, now you are less hungry");
     }
 }

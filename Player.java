@@ -28,4 +28,7 @@ public class Player extends Space {
     public void getHungry(int amt) {
         hunger -= amt;
     }
+    public void eat(Meat meat) {
+        hunger += meat.getHungerValue();
+    }
 }

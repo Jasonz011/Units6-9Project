@@ -145,7 +145,7 @@ public class MazeGame {
                 maze[row][col].printAction();
             } else if(maze[row][col] instanceof Meat) {
                 maze[row][col].printAction();
-                p1.getHungry(-((Meat) maze[row][col]).getHungerValue());
+                p1.eat((Meat) maze[row][col]);
                 System.out.println("Your current hunger is " + p1.getHunger());
             } else if (maze[row][col] instanceof Goal) {
                 goal.setGoalReached(true);
@@ -175,7 +175,7 @@ public class MazeGame {
         System.out.println("You will start with 100 hunger, and each valid move will cost you one.");
         System.out.println("There will be pieces of meat you can pick up and eat which will replenish 20 hunger");
         System.out.println("The game ends when you reach the goal, represented by 👑 or when you run out of hunger");
-        System.out.println("The game will start in 10 seconds, good luck!");
+        System.out.println("The game will start soon, good luck!");
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
